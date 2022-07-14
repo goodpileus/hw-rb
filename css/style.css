@@ -1,0 +1,165 @@
+:root {
+  --bg: #a89794;
+  --bg2: rgba(152, 137, 134, 1);
+  --acc: rgba(226, 222, 210, 0.51);
+
+  --btn: rgba(209, 194, 183, 0.26);
+  --btnsel: rgba(255, 255, 255, 1);
+  --btn-lighter: rgba(0, 0, 0, 0.03);
+
+  --text: #413b36;
+  --link: rgba(87, 77, 70, 0.8);
+  --due: #915840;
+  --hwork: #4d6c4b;
+  --read: #585883;
+  --link-hover: #fffcc4;
+
+  --border: rgb(0, 0, 0);
+
+  --nav-width: 200px;
+  --br: .8rem;
+}
+
+@font-face {
+  font-family: 'notcouriersansregular';
+  src: url('../assets/notcouriersans.woff2') format('woff2'),
+   url('../assets/notcouriersans.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  unicode-range: U+00-02AF, U+011F;
+}
+
+* {
+  font-family: notcouriersansregular, monospace;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: auto;
+  scroll-behavior: smooth;
+}
+
+body{
+  margin:0;
+  /* padding:1rem; */
+  background: var(--bg);
+  color: var(--text);
+  font-family: notcouriersansregular, monospace;
+  font-weight: 200;
+  /* opacity:0; */
+  transition: opacity .2s ease;
+  font-size: 1rem;
+}
+
+img {
+  max-width: 100%;
+}
+
+#main {
+  margin-left:var(--nav-width);
+  padding:.5rem;
+}
+
+#nav {
+  background:lightblue;
+  height:100vh;
+  overflow-y: auto;
+  display: flex;
+  flex-flow: column;
+  width:var(--nav-width);
+  padding:.5rem;
+  border-right:1px solid var(--border);
+  position: fixed;
+}
+
+#nav a {
+  text-decoration: none;
+}
+
+#nav details {
+  display: flex;
+  flex-flow: column;
+  margin-left:1rem;
+}
+
+#nav details summary::marker {
+  display: none;
+}
+
+#nav details summary {
+ list-style:none;
+ margin-left:-1rem;
+ cursor:pointer;
+}
+
+#nav details[open] > summary:after {
+ content: ' -';
+}
+
+#nav details > summary:after {
+ content: ' +';
+}
+
+#nav details summary:hover {
+  background: var(--link-hover);
+}
+
+#nav details summary::selection {
+  background:transparent;
+}
+/* -------------------------------------- */
+
+
+
+/* TYPOGRAPHY
+----------------------------------------- */
+p, h1, h2, h3, h4, h5, h6, ol, ul {
+}
+
+p {
+  margin:0 0 1rem 0;
+  padding:0;
+}
+
+h1, h2, h3 {
+  font-weight: 400;
+  color: var(--header);
+  margin:0 0 1rem 0;
+}
+
+a {
+  color:inherit;
+  transition: color .1s ease-in-out;
+}
+
+a:hover {
+  background: var(--link-hover);
+}
+
+xmp {
+  padding:1rem;
+  margin:0 auto;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.26);
+  overflow-x: scroll;
+  max-width:60rem;
+  font-size: .9rem;
+  color: var(--text);
+  font-family: fira code, monospace;
+}
+
+.week {
+  display: none;
+}
+
+.active {
+    color:red;
+    border:1px solid red;
+  }
+
+
+/* MEDIA QUERY
+----------------------------------------- */
+@media only screen and (max-width: 800px) {
+
+}

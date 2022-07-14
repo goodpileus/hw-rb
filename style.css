@@ -1,0 +1,676 @@
+:root {
+  --yellow: #d5dfc4;
+
+  --btn: #fffa86;
+  --btnsel: rgba(255, 255, 255, 1);
+  --btn-lighter: rgba(0, 0, 0, 0.03);
+
+  --text: #4a4036;
+  --link: rgba(93, 78, 67, 0.7);
+  --link-hover: rgba(93, 78, 67, 0.44);
+
+  --border: rgba(0, 0, 0, 0.2);
+
+  --br: 20rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+body{
+  margin:1rem;
+  background: var(--yellow);
+  color: var(--text);
+  font-family: 'ibm plex sans', sans-serif;
+}
+
+img {
+  max-width: 100%;
+}
+
+.main-wrap {
+  opacity:0;
+  transition: opacity .2s ease;
+  min-height: 80vh;
+  background: var(--yellow);
+  margin-bottom: 4rem;
+}
+/* -------------------------------------- */
+
+
+
+
+
+
+
+
+/* TYPOGRAPHY
+----------------------------------------- */
+p, h1, h2, h3, h4, h5, h6, ol, ul {
+  font-size: 1.4rem;
+  font-weight: normal;
+}
+
+p{
+  margin:0 0 1rem 0;
+  padding:0;
+}
+
+h1, h2, h3 {
+  font-style: italic;
+}
+
+h1 {
+  /* text-align: center; */
+  margin:0 auto;
+  max-width: 60rem;
+  margin-top:1rem;
+  margin-bottom: 1rem;
+  font-weight: lighter;
+  /* font-size: 1.2rem; */
+}
+
+h2 {
+  text-align: center;
+  margin:0 0 2rem 0;
+}
+
+h3 {
+  font-weight: lighter;
+}
+
+a {
+  font-family: 'ibm plex mono', monospace;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--link);
+  text-decoration: none;
+  transition: color .1s ease-in-out;
+}
+
+a:hover {
+  color:var(--link-hover);
+}
+
+i {
+  font-family: 'ibm plex mono', monospace;
+  font-size: 1.4rem;
+  font-weight: lighter;
+}
+
+.emph {
+  font-style: italic;
+}
+
+.fancy {
+  text-align: center;
+  font-family: cursive;
+  font-size: 1.55rem;
+}
+
+.indent {
+  width:80px;
+  display: inline-block;
+}
+
+.text-c {
+  text-align: center;
+}
+
+xmp {
+  padding:1rem;
+  margin:0 auto;
+  font-size: 1rem;
+  text-align: left;
+  border: 2px dotted var(--border);
+  background: rgba(255, 255, 255, 0.26);
+  border-radius: 20px 20px 0 0;
+  overflow-x: scroll;
+  font-family: 'ibm plex mono', monospace;
+  max-width:60rem;
+}
+
+.proj-title {
+  padding-bottom:1rem;
+  margin-bottom: 1rem;
+  border-bottom:2px dotted var(--border);
+}
+/* -------------------------------------- */
+
+
+
+
+
+
+
+/* LISTS, ETC
+----------------------------------------- */
+
+ul {
+  padding-left: 0;
+}
+
+ol {
+  padding-left: 1.1em;
+}
+
+ol li {
+  padding-left: 15px;
+}
+
+ul li {
+  padding-left: 2em;
+  list-style: none;
+  text-indent:-2em;
+}
+
+ul li::before {
+  display: inline-block;
+  width:40px;
+  content:'✽';
+  padding-right: .3em;
+  text-indent: 0;
+}
+
+.due li::before {
+  content:'⚑';
+}
+
+.hwork li::before {
+  content:'→'
+}
+
+.reading li::before {
+  content:'\2630'
+}
+/* -------------------------------------- */
+
+
+/* FLEX
+----------------------------------------- */
+.row {
+  flex-direction: row;
+}
+
+.column .btn{
+  border-radius: 10px;
+  width:100%;
+}
+
+.column {
+  flex-direction: column;
+}
+/* -------------------------------------- */
+
+
+/* HORIZONTAL RULE
+----------------------------------------- */
+hr {
+  border: none;
+  max-width: 60rem;
+  margin:2rem auto;
+  border-top: 2px dotted var(--border);
+  height:0;
+}
+
+.hr-blank {
+  border:none;
+}
+
+.hr-sun {
+  height:20px;
+  width:20px;
+  background: var(--text);
+  border-radius: 50%;
+  margin: 6rem auto 6rem auto;
+  filter: blur(3px);
+  animation: pulse 3s alternate ease-in-out infinite;
+}
+/* -------------------------------------- */
+
+
+
+/* NAV
+----------------------------------------- */
+.nav-wrap {
+  width:100%;
+  z-index: 9999;
+  top:0;
+  left:0;
+  padding:.2rem;
+  transition: opacity 3s;
+  margin-bottom:2rem;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: all 0.5s ease;
+  width:100%;
+}
+
+.nav img {
+  max-height:50px;
+  /* margin:0 1rem; */
+  padding:.3rem 0 .2rem 0;
+}
+
+.nav-btn {
+  text-align: center;
+  border-radius: var(--br);
+  background: var(--btn);
+  margin: 1px;
+  padding:.8rem;
+  transition: background .1s ease-in-out,
+              color .1s ease-in-out;
+}
+
+.nav-btn:hover {
+  background: var(--btn-lighter);
+
+}
+
+/* selected link */
+.sel {
+  text-decoration: underline;
+}
+
+/*
+----------------------------------------- */
+
+
+
+
+
+
+/* CONTENT
+----------------------------------------- */
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  width:100%;
+  overflow-x: hidden;
+}
+
+.content-panel {
+  width:100%;
+  margin-bottom:1vw;
+}
+
+.content-panel p, ol, ul, h3, .accordion, .btn, .legend {
+  margin: 0 auto 1rem auto;
+  max-width:60rem;
+}
+
+.content-panel .quote {
+  max-width:33rem;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+.content-panel h3 {
+  margin-bottom:0rem;
+}
+
+.content-panel img {
+  margin:2rem auto;
+  display: block;
+}
+
+.content-panel .footnote {
+  font-size: 1.2rem;
+  text-align: center;
+  margin:4rem auto 0 auto;
+  opacity: .6;
+}
+
+.footnote a {
+  font-size: 1.1rem;
+}
+
+.fade {
+  background: linear-gradient(to bottom, var(--yellow) 0%, rgba(0, 0, 0, 0) 100%);
+  position: relative;
+  bottom:-1rem;
+  height:1rem;
+  width:100%;
+}
+
+.flower {
+  width:50px;
+  position: fixed;
+  bottom:0;
+  z-index: -1;
+  left:50%;
+  transform: translateX(-50%);
+  margin-top:2rem;
+  height:43px;
+  background-image: url('../img/bottom.svg');
+  background-size: 43px;
+  background-position:  bottom center;
+  background-repeat: no-repeat;
+  transition: transform .3s ease;
+}
+
+.flower:hover {
+  transform: translate(-50%, -5px);
+}
+/* -------------------------------------- */
+
+
+
+/* HOME
+----------------------------------------- */
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  max-width: 60rem;
+  margin: 0 auto 1rem auto;
+  flex-wrap: wrap;
+}
+
+.header-flex p{
+  padding-right:1rem;
+  margin:0 0 1rem 0;
+}
+
+.header-flex p:last-of-type {
+  padding-right:0;
+}
+
+.home-window {
+  height:450px;
+  background:#cdd5b8;
+  max-width: 60rem;
+  margin: 0 auto 2rem auto;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  display:flex;
+  flex-direction: column;
+}
+
+.sun {
+  position: absolute;
+  width:150px;
+  height:100px;
+  background:var(--btn);
+  border-radius: 50%;
+  top:30%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  filter: blur(10px);
+  animation: sun 4s infinite alternate ease-in-out;
+}
+
+.horizon {
+  position: absolute;
+  width:150%;
+  height:50px;
+  background:#cdd5b8;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -50%);
+  filter: blur(5px);
+}
+
+.sky {
+  width:100%;
+  height:50%;
+}
+
+.ocean {
+  width:100%;
+  height:50%;
+
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0% , var(--btn) 70%, rgba(255, 255, 255, 0) 100%);
+  background-repeat: repeat;
+  animation: down 100s infinite linear;
+  background-size:100% 20%;
+}
+
+.more {
+  /* display: none; */
+  max-height:0;
+  overflow: hidden;
+  transition: max-height .5s ease-in-out;
+}
+
+.show {
+  /* display: block; */
+  max-height:100%;
+}
+
+.more-btn {
+  border-bottom:2px dotted var(--border);
+  max-width:60rem;
+  margin:3rem auto 2rem 0;
+  position: relative;
+  left:50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.more-btn span {
+  color: var(--border);
+  position: absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%, -52%);
+  border-radius: var(--br);
+  background:var(--yellow);
+  padding:.5rem;
+  font-style: italic;
+  transition: background .1s ease;
+}
+
+.more-btn span:hover {
+  background:#cdd5b8;
+}
+
+.more-btn span::before {
+  content:'more';
+}
+
+.less span::before {
+  content:'less';
+}
+
+/* -------------------------------------- */
+
+
+
+
+/* ACCORDION
+----------------------------------------- */
+.accordion {
+  padding:.8rem;
+  background: var(--btn);
+  border-radius: 10px;
+  margin: 2px auto 0px auto;
+  width:100%;
+  display: block;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.accordion span {
+  width:33%;
+}
+
+.accordion span:first-child {
+  /* float: right; */
+  text-align: left;
+}
+
+.accordion span:last-child {
+  /* float: right; */
+  text-align: right;
+}
+
+.accordion:hover {
+  cursor: pointer;
+  background: var(--btn-lighter);
+}
+
+.accordion::selection,
+.accordion span::selection {
+  background:transparent;
+}
+
+.panel {
+  max-height: 0;
+  max-width: 60rem;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 0 .8rem 0 .8rem;
+  transition: max-height 0.2s;
+  -webkit-transition: max-height 0.2s;
+  -moz-transition:  max-height 0.2s;
+  -o-transition:  max-height 0.2s;
+  border-radius: 10px;
+}
+
+.panel hr {
+  padding:0 .8rem;
+}
+
+.panel h3 {
+  padding-bottom:.5rem;
+  font-weight: normal;
+}
+
+.panel h3:first-child {
+  padding-top:1rem;
+}
+
+.panel p:last-child,
+.panel ul:last-child {
+  margin-bottom:2rem;
+}
+
+.filler {
+  font-size: 1.4rem;
+  color: var(--border);
+  display: flex;
+  /* width:100%; */
+  justify-content: center;
+  align-items: center;
+  height:5rem;
+  border:2px dotted var(--border);
+  border-radius: 50%;
+  margin:1rem 0;
+}
+
+.legend {
+  text-align: center;
+  opacity: .5;
+}
+/* -------------------------------------- */
+
+
+
+
+/* BUTTONS
+----------------------------------------- */
+.btn-wrap {
+  width:100%;
+  /* max-width:60rem; */
+  /* margin: 0 auto; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.btn {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  background: var(--btn);
+  text-align: center;
+  margin: 1px;
+  width:250px;
+  padding:.8rem;
+  border-radius: var(--br);
+  transition: background .1s ease-in-out,
+              color .1s ease-in-out;
+}
+
+.btn:hover {
+  background: var(--btn-lighter);
+}
+
+.btn-long {
+  width: auto;
+}
+
+.return-btn {
+  background:var(--btn);
+  position:fixed;
+  bottom:50px;
+  left:50%;
+  transform: translateX(-50%);
+  z-index: 9999;
+}
+/* -------------------------------------- */
+
+
+
+
+
+
+/* ANIMATIONS
+----------------------------------------- */
+@keyframes down {
+  0% {background-position:  0 -200%;}
+  100% {background-position:  -400% 0}
+}
+
+@keyframes pulse {
+  0% {transform: scale(1);}
+  100% {transform: scale(1.4);}
+}
+
+@keyframes sun {
+  0% {top:30%;}
+  100% {top:28%;}
+}
+
+/* -------------------------------------- */
+
+
+
+
+
+
+/* MEDIA QUERY
+----------------------------------------- */
+@media only screen and (max-width: 800px) {
+  .bottom-nav {
+    display: none;
+  }
+
+  .btn{
+    width:49.5%;
+  }
+
+  .header-flex {
+    display: block;
+    text-align: center;
+  }
+
+  .header-flex p {
+    padding-right:0;
+  }
+}
