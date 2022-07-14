@@ -22,7 +22,7 @@ function timer() {
 
 // LOADS GLOBAL NAV
 $(function(){
-  $("#nav").load("/nav.html");
+  $("#nav").load("/hw-rb/nav.html");
 });
 
 // CALENDAR SELECTION
