@@ -24,7 +24,8 @@ window.onload = function() {
 };
 
 // SCREENSAVER
-Cookies.set('day', true);
+Cookies.set('day', false);
+Cookies.get()
 
 var elem = document.getElementById("timer"), timeout, startTimer = function timer() {
     timeout = setTimeout(timer, 5000)
