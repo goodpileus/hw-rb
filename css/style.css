@@ -1,23 +1,29 @@
 :root {
-  --bg: #a89794;
-  --bg2: rgba(152, 137, 134, 1);
-  --acc: rgba(226, 222, 210, 0.51);
+  --bg: palegoldenrod;
+  --night: #4e4e5c;
 
-  --btn: rgba(209, 194, 183, 0.26);
-  --btnsel: rgba(255, 255, 255, 1);
-  --btn-lighter: rgba(0, 0, 0, 0.03);
+  --acc: rgba(138, 119, 87, 0.3);
+
+  --sun: #c65841;
 
   --text: #413b36;
-  --link: rgba(87, 77, 70, 0.8);
+  --text-night: #e2e2d3;
+  --link: #524942;
+  --link-hover: #fffcc4;
+  --link-night: #e0e0b0;
+
   --due: #915840;
   --hwork: #4d6c4b;
   --read: #585883;
-  --link-hover: #fffcc4;
 
-  --border: rgb(0, 0, 0);
+  --border: rgba(0, 0, 0, .3);
 
   --nav-width: 200px;
+  --max-width: 900px;
   --br: .8rem;
+
+  --save-on: 30s cubic-bezier(.87,0,.19,1);
+  --save-off: .5s cubic-bezier(.87,0,.19,1);
 }
 
 @font-face {
@@ -26,11 +32,28 @@
    url('../assets/notcouriersans.woff') format('woff');
   font-weight: normal;
   font-style: normal;
-  unicode-range: U+00-02AF, U+011F;
+}
+
+@font-face {
+    font-family: 'qtlettergothic';
+    src: url('/assets/qtlettergoth.woff2') format('woff2'),
+         url('/assets/qtlettergoth.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'qtlettergothic';
+    src: url('/assets/qtlettergoth-italic.woff2') format('woff2'),
+         url('/assets/qtlettergoth-italic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
 }
 
 * {
-  font-family: notcouriersansregular, monospace;
+  font-family: 'qtlettergothic', monospace;
+  /* font-family: juliamono, monospace; */
+  /* font-family: notcouriersansregular, monospace; */
   box-sizing: border-box;
 }
 
@@ -44,11 +67,60 @@ body{
   /* padding:1rem; */
   background: var(--bg);
   color: var(--text);
-  font-family: notcouriersansregular, monospace;
   font-weight: 200;
   /* opacity:0; */
-  transition: opacity .2s ease;
+  transition: opacity .2s, background var(--save-off), color var(--save-off);
   font-size: 1rem;
+}
+
+body.saving {
+  background:var(--night);
+  color:var(--text-night);
+  transition: opacity .2s, background var(--save-on), color var(--save-on);
+}
+
+body a {
+  color: var(--link);
+  transition: color var(--save-off);
+}
+
+body.saving a {
+  color:var(--link-night);
+  transition: color var(--save-on);
+}
+
+.sun {
+  width:50px;
+  height:50px;
+  background: var(--sun);
+  position: fixed;
+  top:50%;
+  left:calc(50% + 100px);
+  /* left:50%; */
+  transform: translate(-50%, -50%);
+  z-index: -1;
+  transition: var(--save-off);
+}
+
+.sun.saving {
+  top:110%;
+  transition: var(--save-on);
+}
+
+.moon {
+  width:20px;
+  height:20px;
+  background: var(--text-night);
+  position: fixed;
+  top:-40%;
+  right:10%;
+  z-index: -1;
+  transition: var(--save-off);
+}
+
+.moon.saving {
+  top:10%;
+  transition: var(--save-on);
 }
 
 img {
@@ -58,10 +130,20 @@ img {
 #main {
   margin-left:var(--nav-width);
   padding:.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.inner {
+  width:100%;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  /* max-width: var(--max-width); */
 }
 
 #nav {
-  background:lightblue;
+  /* background:lightblue; */
   height:100vh;
   overflow-y: auto;
   display: flex;
@@ -76,10 +158,14 @@ img {
   text-decoration: none;
 }
 
+#nav a.active {
+  text-decoration: underline;
+}
+
 #nav details {
   display: flex;
   flex-flow: column;
-  margin-left:1rem;
+  margin-left:1.2rem;
 }
 
 #nav details summary::marker {
@@ -88,7 +174,7 @@ img {
 
 #nav details summary {
  list-style:none;
- margin-left:-1rem;
+ margin-left:-1.2rem;
  cursor:pointer;
 }
 
@@ -107,6 +193,17 @@ img {
 #nav details summary::selection {
   background:transparent;
 }
+
+.current-season {
+  margin-top:1rem;
+}
+
+.current-class {
+  padding-left:1.2rem;
+  display: flex;
+  flex-flow: column;
+  margin-bottom:1rem;
+}
 /* -------------------------------------- */
 
 
@@ -114,6 +211,8 @@ img {
 /* TYPOGRAPHY
 ----------------------------------------- */
 p, h1, h2, h3, h4, h5, h6, ol, ul {
+  max-width: var(--max-width);
+  width:100%;
 }
 
 p {
@@ -127,8 +226,12 @@ h1, h2, h3 {
   margin:0 0 1rem 0;
 }
 
+h3 {
+  font-size: 1rem;
+}
+
 a {
-  color:inherit;
+  /* color:inherit; */
   transition: color .1s ease-in-out;
 }
 
@@ -148,14 +251,21 @@ xmp {
   font-family: fira code, monospace;
 }
 
+hr {
+  border:none;
+  border-bottom:1px solid var(--border);
+  margin:1rem 0;
+  width:100%;
+}
+
+.current::before {
+  content: '-';
+}
+
 .week {
   display: none;
 }
 
-.active {
-    color:red;
-    border:1px solid red;
-  }
 
 
 /* MEDIA QUERY

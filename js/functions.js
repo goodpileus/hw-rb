@@ -1,28 +1,14 @@
-window.onload = function() {
-  console.log('Loaded :-)');
-  // cycleColors();
-};
-
-var colors = ['#a89794', '#915840', '#4d6c4b', '#585883', '#a68068', '#816e8e', '#a6a55a'];
-
-function cycleColors(){
-  color = colors.shift();
-  colors.push(color);
-
-  $('body').css({
-    'background' : color,
-  });;
-}
-
-var interval = setInterval(timer, 6000);
-
-function timer() {
-  // cycleColors();
-}
-
 // LOADS GLOBAL NAV
 $(function(){
   $("#nav").load("/hw-rb/nav.html");
+
+
+  setTimeout(
+    function()
+    {
+      var href = window.location.pathname;
+      $('#nav').find('a[href="' + href + '"]').addClass('active');
+    }, 100);
 });
 
 // CALENDAR SELECTION
@@ -33,7 +19,60 @@ $(function() {
   }).change();
 });
 
-// CURRENT PAGE
-$(document).ready(function(){
-    $("a[href='" + window.location.href + "']").addClass("active");
-});
+window.onload = function() {
+  console.log('Loaded :-)');
+};
+
+// SCREENSAVER
+Cookies.set('day', true);
+Cookies.set('night', false);
+
+var elem = document.getElementById("timer"), timeout, startTimer = function timer() {
+    timeout = setTimeout(timer, 5000)
+    $('.sun').addClass( "saving" );
+    $('.moon').addClass( "saving" );
+    $('body').addClass( "saving" );
+}
+function resetTimer() {
+    // here you reset the timer...
+    clearTimeout(timeout);
+    startTimer();
+    $('.sun').removeClass( "saving" );
+    $('.moon').removeClass( "saving" );
+    $('body').removeClass( "saving" );
+    //... and also you could start again some other action
+}
+
+function dayTime() {
+  console.log('day');
+  document.addEventListener("mousemove", resetTimer);
+  document.addEventListener("keypress", resetTimer);
+  resetTimer();
+
+  Cookies.set('day', true);
+  Cookies.set('night', false);
+};
+
+function nightTime() {
+  console.log('night');
+
+  clearTimeout(timeout);
+  $('.sun').addClass( "saving" );
+  $('.moon').addClass( "saving" );
+  $('body').addClass( "saving" );
+
+  document.removeEventListener("mousemove", resetTimer);
+  document.removeEventListener("keypress", resetTimer);
+
+  Cookies.set('day', false);
+  Cookies.set('night', true);
+};
+
+
+if(Cookies.get('day') == 'true'){
+  console.log('day cookie');
+  dayTime();
+} else if(Cookies.get('night') == 'true') {
+  console.log('night cookie');
+  nightTime();
+}
