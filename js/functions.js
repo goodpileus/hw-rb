@@ -25,7 +25,6 @@ window.onload = function() {
 
 // SCREENSAVER
 Cookies.set('day', true);
-Cookies.set('night', false);
 
 var elem = document.getElementById("timer"), timeout, startTimer = function timer() {
     timeout = setTimeout(timer, 5000)
@@ -49,8 +48,9 @@ function dayTime() {
   document.addEventListener("keypress", resetTimer);
   resetTimer();
 
-  Cookies.set('day', true);
   Cookies.set('night', false);
+
+  Cookies.set('day', true);
 };
 
 function nightTime() {
@@ -65,6 +65,7 @@ function nightTime() {
   document.removeEventListener("keypress", resetTimer);
 
   Cookies.set('day', false);
+
   Cookies.set('night', true);
 };
 
